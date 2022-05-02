@@ -1,15 +1,13 @@
 import algorithms.mazeGenerators.Maze;
+import java.lang.System;
+public abstract class AMazeGenerator implements IMazeGenerator {
+    public abstract Maze generate(int rows, int lines);
 
-public class AMazeGenerator implements IMazeGenerator {
-
-    ds
-    @Override
-    public Maze generate(int rows, int lines) {
-        return null;
-    }
-
-    @Override
     public long measureAlgorithmTimeMillis(int rows, int lines) {
-        return 0;
+        // save current time before generate, call generate, check time after function and return sub.
+        long before_generate = System.currentTimeMillis();
+        generate(rows,lines);
+        long after_generate = System.currentTimeMillis();
+        return after_generate - before_generate;
     }
 }
