@@ -5,13 +5,15 @@ import java.util.Random;
 
     @Override
     public Maze generate(int rows, int columns) {
-        int[][] maze = new int[rows][columns];
+        int[][] mazeMatrix = new int[rows][columns];
         Random random = new Random();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                maze[i][j] = random.nextInt(2);
+                mazeMatrix[i][j] = random.nextInt(2);
             }
         }
+        Maze maze = new Maze(mazeMatrix);
 
+        return maze;
     }
 }
