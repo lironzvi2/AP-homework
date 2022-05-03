@@ -40,7 +40,7 @@ import java.util.Random;
                 }
                 startX--;
             }
-            if (startX < startY)
+            if (startX < endX)
             {
                 if (startX != 0 || startY != 0)
                 {
@@ -56,7 +56,7 @@ import java.util.Random;
                 }
                 startY--;
             }
-            if (startY < startY)
+            if (startY < endY)
             {
                 if (startX != 0 || startY != 0)
                 {
