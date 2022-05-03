@@ -80,4 +80,41 @@ public class Maze {
     public void SetRowColVal(int row, int col, int val){
         this.maze[row][col] = val;
     }
+
+    public String ToString(){
+        String s ="";
+
+        for(int row = 0; row < this.numRows ; row++)
+        {
+            for (int col = 0; col < this.numColumns ; col++)
+            {
+                if (startP.row == row && startP.col == col)
+                {
+                    s += "s" ;
+                }
+                else if (endP.row == row && endP.col == col)
+                {
+                    s += "e" ;
+                }
+                else
+                {
+                    s+= this.maze[row][col];
+                }
+            }
+            s += "\n";
+        }
+        return s;
+    }
+
+    public void print(){
+        System.out.print(this.ToString());
+    }
+
+    public Position getStartPosition(){
+        return this.startP;
+    }
+
+    public Position getGoalPosition(){
+        return this.endP;
+    }
 }
