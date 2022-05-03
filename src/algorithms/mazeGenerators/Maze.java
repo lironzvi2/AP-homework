@@ -90,11 +90,11 @@ public class Maze {
             {
                 if (startP.row == row && startP.col == col)
                 {
-                    s += "s" ;
+                    s += "S" ;
                 }
                 else if (endP.row == row && endP.col == col)
                 {
-                    s += "e" ;
+                    s += "E" ;
                 }
                 else
                 {
