@@ -13,6 +13,7 @@ public class Maze {
         this.endP = endP;
         this.numRows = rows;
         this.numColumns = columns;
+        maze = new int[rows][columns];
     }
 
     public Maze(int rows, int columns){
@@ -20,6 +21,7 @@ public class Maze {
         this.numColumns = columns;
         this.startP = new Position(0,0);
         this.endP = new Position(0,0);
+        maze = new int[rows][columns];
     }
 
     public Maze(int[][] maze){

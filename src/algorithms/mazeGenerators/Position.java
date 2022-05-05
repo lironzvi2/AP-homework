@@ -8,4 +8,7 @@ public class Position {
         this.row = row;
         this.col = col;
     }
+    public boolean isEquals(Position sec_pos){
+        return sec_pos.row == this.row && sec_pos.col == this.col;
+    }
 }
