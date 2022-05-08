@@ -26,10 +26,10 @@ import java.util.Random;
         maze.SetPositionToVal(maze.startP, 0);
         maze.SetPositionToVal(maze.endP, 0);
         int startX = maze.startP.row;
-        int startY = maze.startP.col;
+        int startY = maze.startP.column;
 
         int endX = maze.endP.row;
-        int endY = maze.endP.col;
+        int endY = maze.endP.column;
 
         while(startX != endX || startY != endY ){
             if (startX > endX)
