@@ -21,4 +21,7 @@ public class Position {
     public int getRowIndex() {
         return row;
     }
+    public boolean isEquals(Position sec_pos){
+        return sec_pos.row == this.row && sec_pos.col == this.col;
+    }
 }
