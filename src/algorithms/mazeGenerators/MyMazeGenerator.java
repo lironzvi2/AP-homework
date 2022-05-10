@@ -37,9 +37,15 @@ public class MyMazeGenerator extends AMazeGenerator {
             }
         }
         for(int i=0;i<rows;i++){
+            System.out.print("[");
             for(int j=0;j<columns;j++){
-                System.out.print(prim_maze[i][j]);
+                if(j<99)
+                System.out.print(prim_maze[i][j]+",");
+                else{
+                    System.out.print(prim_maze[i][j]);
+                }
             }
+            System.out.print("],");
             System.out.print("\n");
         }
         my_maze.maze = prim_maze;
@@ -67,9 +73,15 @@ public class MyMazeGenerator extends AMazeGenerator {
     }
     private Position find_route(int[][] maze, Position curr_pos){
         Position path;
+        Random rand = new Random();
+        Position to_return = new Position(0,0);
+        int rand_connect = rand.nextInt(4);
         try{ //if maze above curr position
             if(maze[curr_pos.row-2][curr_pos.col]==0){
+                if(rand_connect == 0)
                 return new Position(curr_pos.row-1,curr_pos.col );
+                to_return = new Position(curr_pos.row-1,curr_pos.col);
+                rand_connect--;
             }
         }
         catch (Exception e){ //do nothing
@@ -77,7 +89,10 @@ public class MyMazeGenerator extends AMazeGenerator {
         }
         try{ //if maze below curr position
             if(maze[curr_pos.row+2][curr_pos.col]==0){
+                if(rand_connect==0)
                 return new Position(curr_pos.row+1,curr_pos.col );
+                to_return = new Position(curr_pos.row+1,curr_pos.col);
+                rand_connect--;
             }
         }
         catch (Exception e){ //do nothing
@@ -85,13 +100,27 @@ public class MyMazeGenerator extends AMazeGenerator {
         }
         try{ //if maze is right to curr position
             if(maze[curr_pos.row][curr_pos.col+2]==0){
+                if(rand_connect == 0)
                 return new Position(curr_pos.row,curr_pos.col+1);
+                to_return = new Position(curr_pos.row,curr_pos.col+1);
+                rand_connect --;
             }
         }
         catch (Exception e){ //do nothing
 
         }
-        return new Position(curr_pos.row,curr_pos.col-1); //maze got to be left if nothing else
+
+        try{ //if maze is right to curr position
+            if(maze[curr_pos.row][curr_pos.col-2]==0){
+                if(rand_connect == 0)
+                    return new Position(curr_pos.row,curr_pos.col-1);
+                to_return = new Position(curr_pos.row,curr_pos.col-1);
+            }
+        }
+        catch (Exception e){ //do nothing
+
+        }
+        return to_return;
     }
     private void generate_maze(int[][] maze,int rows,int columns){
         for(int i=0;i<rows;i++){
@@ -100,5 +129,9 @@ public class MyMazeGenerator extends AMazeGenerator {
             }
         }
     }
+    public static void main(String[] args){
+        MyMazeGenerator myMazeGenerator = new MyMazeGenerator();
+        Maze m = myMazeGenerator.generate(50,50);
 
+    }
 }
