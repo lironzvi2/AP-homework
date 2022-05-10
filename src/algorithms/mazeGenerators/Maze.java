@@ -1,5 +1,6 @@
 package algorithms.mazeGenerators;
 
+import java.util.Random;
 
 public class Maze {
     int numRows;
@@ -13,7 +14,7 @@ public class Maze {
         this.endP = endP;
         this.numRows = rows;
         this.numColumns = columns;
-        maze = new int[rows][columns];
+        this.maze = new int [numRows][numColumns];
     }
 
     public Maze(int rows, int columns){
@@ -21,7 +22,7 @@ public class Maze {
         this.numColumns = columns;
         this.startP = new Position(0,0);
         this.endP = new Position(0,0);
-        maze = new int[rows][columns];
+        this.maze = new int [numRows][numColumns];
     }
 
     public Maze(int[][] maze){
@@ -30,5 +31,95 @@ public class Maze {
         this.numColumns = maze[0].length;
         this.startP = new Position(0,0);
         this.endP = new Position(0,0);
+    }
+
+/* wall :
+*     0
+*   1   2
+*     3
+* */
+
+    public Position[] GetStartAndEndPosition(){
+        Position[] startEndPositions = new Position[2];
+        int i;
+        int wall = new Random().nextInt(4);
+
+        if (wall == 0){
+            i = new Random().nextInt(this.numColumns);
+            startEndPositions[0] = new Position(0, i);
+            i = new Random().nextInt(this.numColumns);
+            startEndPositions[1] = new Position(this.numRows - 1, i);
+        }
+        else if(wall == 3){
+            i = new Random().nextInt(this.numColumns);
+            startEndPositions[0] = new Position(this.numRows - 1, i);
+            i = new Random().nextInt(this.numColumns);
+            startEndPositions[1] = new Position(0, i);
+        }
+
+        else if(wall == 2){
+            i = new Random().nextInt(this.numRows);
+            startEndPositions[0] = new Position(i, this.numColumns - 1);
+            i = new Random().nextInt(this.numRows);
+            startEndPositions[1] = new Position(i, 0);
+        }
+        else
+        {
+            i = new Random().nextInt(this.numRows);
+            startEndPositions[0] = new Position(i, 0);
+            i = new Random().nextInt(this.numRows);
+            startEndPositions[1] = new Position(i, this.numColumns - 1);
+        }
+        return startEndPositions;
+    }
+
+    public void SetPositionToVal(Position p, int val){
+
+        this.maze[p.row][p.column] = val;
+    }
+
+    public void SetRowColVal(int row, int col, int val){
+
+        this.maze[row][col] = val;
+    }
+
+    public String ToString(){
+        String s ="";
+
+        for(int row = 0; row < this.numRows ; row++)
+        {
+            for (int col = 0; col < this.numColumns ; col++)
+            {
+                if (startP.row == row && startP.column == col)
+                {
+                    s += "S" ;
+                }
+                else if (endP.row == row && endP.column == col)
+                {
+                    s += "E" ;
+                }
+                else
+                {
+                    s+= this.maze[row][col];
+                }
+            }
+            s += "\n";
+        }
+        return s;
+    }
+
+    public void print(){
+
+        System.out.print(this.ToString());
+    }
+
+    public Position getStartPosition(){
+
+        return this.startP;
+    }
+
+    public Position getGoalPosition(){
+
+        return this.endP;
     }
 }
