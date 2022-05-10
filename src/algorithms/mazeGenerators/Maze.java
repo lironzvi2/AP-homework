@@ -74,10 +74,12 @@ public class Maze {
     }
 
     public void SetPositionToVal(Position p, int val){
-        this.maze[p.row][p.col] = val;
+
+        this.maze[p.row][p.column] = val;
     }
 
     public void SetRowColVal(int row, int col, int val){
+
         this.maze[row][col] = val;
     }
 
@@ -88,11 +90,11 @@ public class Maze {
         {
             for (int col = 0; col < this.numColumns ; col++)
             {
-                if (startP.row == row && startP.col == col)
+                if (startP.row == row && startP.column == col)
                 {
                     s += "S" ;
                 }
-                else if (endP.row == row && endP.col == col)
+                else if (endP.row == row && endP.column == col)
                 {
                     s += "E" ;
                 }
@@ -107,14 +109,17 @@ public class Maze {
     }
 
     public void print(){
+
         System.out.print(this.ToString());
     }
 
     public Position getStartPosition(){
+
         return this.startP;
     }
 
     public Position getGoalPosition(){
+
         return this.endP;
     }
 }

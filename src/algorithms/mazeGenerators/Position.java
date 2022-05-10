@@ -1,16 +1,24 @@
 package algorithms.mazeGenerators;
 
 public class Position {
-    int col;
+    int column;
     int row;
 
     public Position(int row, int col){
         this.row = row;
-        this.col = col;
+        this.column = col;
     }
 
     @Override
     public String toString() {
-        return "{" + row + "," + col + "}";
+        return "{" + row + "," + column + "}";
+    }
+
+    public int getColumnIndex() {
+        return column;
+    }
+
+    public int getRowIndex() {
+        return row;
     }
 }
