@@ -15,17 +15,14 @@ public class Solution{
         Stack<AState> solList = new Stack<>();
         AState end = this.end;
         solList.add(end);
-        int howManyParents = 0;
         while(end.getParent() != null) {
-            solList.add(end.getParent());
+            solList.push(end.getParent());
             end = end.getParent();
-            howManyParents++;
         }
         ArrayList<AState> endingSol = new ArrayList<>();
-        for(int i =howManyParents; i >= 0 ; i--){
-            
+        while(!solList.isEmpty()){
+            endingSol.add(solList.pop());
         }
-
-
+        return endingSol;
     }
 }
