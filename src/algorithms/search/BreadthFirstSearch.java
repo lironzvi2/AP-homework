@@ -1,5 +1,9 @@
 package algorithms.search;
+import algorithms.mazeGenerators.Maze;
+import algorithms.mazeGenerators.MyMazeGenerator;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class BreadthFirstSearch extends ASearchingAlgorithm {
     public BreadthFirstSearch(){
@@ -9,7 +13,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
     @Override
     public Solution solve(ISearchable maze) {
         ArrayList<AState> states = new ArrayList<>();
-        ArrayList<AState> visited = new ArrayList<>();
+        HashSet<AState> visited = new HashSet<>();
         states.add(maze.getStartState());
         visited.add(maze.getStartState());
         nodesEvaluated +=1;
@@ -38,5 +42,4 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
     public String getName() {
         return mazeName;
     }
-
 }

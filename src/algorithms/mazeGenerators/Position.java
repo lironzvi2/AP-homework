@@ -2,6 +2,8 @@ package algorithms.mazeGenerators;
 
 import algorithms.search.AState;
 
+import java.util.Objects;
+
 public class Position {
     int column;
     int row;
@@ -41,4 +43,9 @@ public class Position {
     }
     public int getColumn(){return column;}
     public int getRow(){return row;}
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(column, row);
+    }
 }

@@ -31,7 +31,7 @@ public class SearchableMaze implements ISearchable {
         int[][] mazeArray = maze.getMaze();
         // check upper position
         try{
-            if(mazeArray[pos.getRow()-1][pos.getColumn()]==1){ //part of maze
+            if(mazeArray[pos.getRow()-1][pos.getColumn()]==0){ //part of maze
                 Position upperPos = new Position(pos.getRow()-1, pos.getColumn());
                 neighbors.add(new AState(upperPos,1));
             }
@@ -41,7 +41,7 @@ public class SearchableMaze implements ISearchable {
         }
         // check down position
         try{
-            if(mazeArray[pos.getRow()+1][pos.getColumn()]==1){ //part of maze
+            if(mazeArray[pos.getRow()+1][pos.getColumn()]==0){ //part of maze
                 Position downPos = new Position(pos.getRow()+1, pos.getColumn());
                 neighbors.add(new AState(downPos,1));
             }
@@ -51,7 +51,7 @@ public class SearchableMaze implements ISearchable {
         }
         // check right position
         try{
-            if(mazeArray[pos.getRow()][pos.getColumn()+1]==1){ //part of maze
+            if(mazeArray[pos.getRow()][pos.getColumn()+1]==0){ //part of maze
                 Position rightPos = new Position(pos.getRow(), pos.getColumn()+1);
                 neighbors.add(new AState(rightPos,1));
             }
@@ -61,7 +61,7 @@ public class SearchableMaze implements ISearchable {
         }
         // check left position
         try{
-            if(mazeArray[pos.getRow()][pos.getColumn()-1]==1){ //part of maze
+            if(mazeArray[pos.getRow()][pos.getColumn()-1]==0){ //part of maze
                 Position leftPos = new Position(pos.getRow(), pos.getColumn()-1);
                 neighbors.add(new AState(leftPos,1));
             }
@@ -69,6 +69,56 @@ public class SearchableMaze implements ISearchable {
         catch (Exception e){ //continue
 
         }
+        // check Diagonals
+        //down right diagonal
+        try{
+            if(mazeArray[pos.getRow()+1][pos.getColumn()+1]==0){
+                if(mazeArray[pos.getRow()][pos.getColumn()+1]==0||mazeArray[pos.getRow()+1][pos.getColumn()]==0){
+                    Position downDialPos = new Position(pos.getRow()+1,pos.getColumn()+1);
+                    neighbors.add(new AState(downDialPos,1.5));
+                }
+            }
+        }
+        catch (Exception e){//continue
+
+        }
+        //upper right diagonal
+        try{
+            if(mazeArray[pos.getRow()-1][pos.getColumn()+1]==0){
+                if(mazeArray[pos.getRow()][pos.getColumn()+1]==0||mazeArray[pos.getRow()-1][pos.getColumn()]==0){
+                    Position upperRightDialPos = new Position(pos.getRow()-1,pos.getColumn()+1);
+                    neighbors.add(new AState(upperRightDialPos,1.5));
+                }
+            }
+        }
+        catch (Exception e){//continue
+
+        }
+        //upper left diagonal
+        try{
+            if(mazeArray[pos.getRow()-1][pos.getColumn()-1]==0){
+                if(mazeArray[pos.getRow()][pos.getColumn()-1]==0||mazeArray[pos.getRow()-1][pos.getColumn()]==0){
+                    Position upperLeftDialPos = new Position(pos.getRow()-1,pos.getColumn()-1);
+                    neighbors.add(new AState(upperLeftDialPos,1.5));
+                }
+            }
+        }
+        catch (Exception e){//continue
+
+        }
+        //down left diagonal
+        try{
+            if(mazeArray[pos.getRow()+1][pos.getColumn()-1]==0){
+                if(mazeArray[pos.getRow()][pos.getColumn()-1]==0||mazeArray[pos.getRow()+1][pos.getColumn()]==0){
+                    Position downLeftDialPos = new Position(pos.getRow()+1,pos.getColumn()-1);
+                    neighbors.add(new AState(downLeftDialPos,1.5));
+                }
+            }
+        }
+        catch (Exception e){//continue
+
+        }
         return neighbors;
     }
+
 }

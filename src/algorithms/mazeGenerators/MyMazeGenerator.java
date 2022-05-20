@@ -160,14 +160,14 @@ public class MyMazeGenerator extends AMazeGenerator {
         ArrayList<Position> edgesInMaze = new ArrayList<>();
         // add top row
         for(int i=0;i<mazeArray[0].length;i++){
-            if(mazeArray[0][i] == 1){ //if is part of maze
+            if(mazeArray[0][i] == 0){ //if is part of maze
                 edgesInMaze.add(new Position(0,i));
             }
         }
         // add bottom row if has more than one row
         if(mazeArray.length>1){
             for(int i=0;i<mazeArray[0].length;i++){
-                if(mazeArray[mazeArray.length-1][i]==1){
+                if(mazeArray[mazeArray.length-1][i]==0){
                     edgesInMaze.add(new Position(mazeArray.length-1,i));
                 }
             }
@@ -175,7 +175,7 @@ public class MyMazeGenerator extends AMazeGenerator {
         // add left edge if has more than one row
         if(mazeArray.length>1){
             for(int i=0;i<mazeArray.length;i++){
-                if(mazeArray[i][0]==1){
+                if(mazeArray[i][0]==0){
                     edgesInMaze.add(new Position(i,0));
                 }
             }
@@ -183,7 +183,7 @@ public class MyMazeGenerator extends AMazeGenerator {
         // add right edge if has more than one row and more than one column
         if(mazeArray.length>1 && mazeArray[0].length>1){
             for(int i=0;i<mazeArray.length;i++){
-                if(mazeArray[i][mazeArray[0].length-1]==1){
+                if(mazeArray[i][mazeArray[0].length-1]==0){
                     edgesInMaze.add(new Position(i,mazeArray[0].length-1));
                 }
             }
