@@ -23,9 +23,8 @@ public class Solution{
         }
         ArrayList<AState> endingSol = new ArrayList<>();
         for(int i =howManyParents; i >= 0 ; i--){
-            
+            endingSol.add(solList.get(i));
         }
-
-
+        return endingSol;
     }
 }
