@@ -1,8 +1,10 @@
 package algorithms.mazeGenerators;
 
+import algorithms.search.ISearchable;
+
 import java.util.Random;
 
-public class Maze {
+public class Maze{
     int numRows;
     int numColumns;
     Position startP;
@@ -122,4 +124,5 @@ public class Maze {
 
         return this.endP;
     }
+    public int[][] getMaze(){return maze;}
 }

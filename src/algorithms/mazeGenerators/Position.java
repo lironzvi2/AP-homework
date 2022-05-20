@@ -1,5 +1,7 @@
 package algorithms.mazeGenerators;
 
+import algorithms.search.AState;
+
 public class Position {
     int column;
     int row;
@@ -21,7 +23,22 @@ public class Position {
     public int getRowIndex() {
         return row;
     }
-    public boolean isEquals(Position sec_pos){
-        return sec_pos.row == this.row && sec_pos.col == this.col;
+    @Override
+    public boolean equals(Object sec_pos){
+        boolean equal;
+        if(sec_pos!= null && sec_pos.getClass() == this.getClass())
+        {
+            Position as = (Position) sec_pos;
+            equal = as.row==this.row&&as.column==this.column;
+        }
+        else if(sec_pos == this){
+            equal = true;
+        }
+        else{
+            equal = false;
+        }
+        return equal;
     }
+    public int getColumn(){return column;}
+    public int getRow(){return row;}
 }

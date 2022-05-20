@@ -1,6 +1,6 @@
 package algorithms.search;
 
-public abstract class AState {
+public class AState {
     private AState parent;
     private  Object state;
     int cost;
@@ -14,7 +14,6 @@ public abstract class AState {
         this.state = s;
         this.cost = cost;
     }
-
     public AState getParent() {
         return parent;
     }
