@@ -16,54 +16,30 @@ public class BestFirstSearch extends  ASearchingAlgorithm {
         return this.name;
     }
 
-    /*public Solution solve(ISearchable maze){
-        Map<String, Boolean> beenStates = new HashMap<>();
-        this.nodesEvaluated = 0;
-        PriorityQueue<AState> priorityQueueStates = new PriorityQueue(new AStatePriorityCompare());
-        priorityQueueStates.add(maze.getStartState());
-        beenStates.put(maze.getStartState().toString(), true);
-        Solution ending = new BreadthFirstSearch().solve(maze, priorityQueueStates);
-        return mazeSolution;
-    }*/
-
     public Solution solve(ISearchable maze){
-        AState startPosition = maze.getStartState();
-        AState endPosition = maze.getGoalState();
-        PriorityQueue<AState> begins = new PriorityQueue(new AStatePriorityCompare());
-        ArrayList<AState> statesPerents = new ArrayList<>();
-        Map<Integer, AState> ending = new HashMap<>();
-        Map<Integer, AState> newMap = new HashMap<>();
-        ending.put(maze.getStartState().hashCode(), maze.getStartState());
-        begins.add(maze.getStartState());
-        AState curState;
-        while(begins.size() > 0){
-            curState = begins.poll();
-            ending.put(curState.hashCode(), curState);
-            statesPerents = maze.getAllStates(curState);
-
-            if (maze.getStartState().equals(curState)){
-                return this.mazeSolution;
+        PriorityQueue<AState> states = new PriorityQueue(new AStatePriorityCompare());
+        HashSet<AState> visited = new HashSet<>();
+        states.add(maze.getStartState());
+        visited.add(maze.getStartState());
+        nodesEvaluated +=1;
+        while(states.size()!=0) {
+            AState curr_state = states.poll();
+            if(curr_state.equals(maze.getGoalState())){ //if found goal state
+                return new Solution(curr_state);
             }
-            Iterator iteratorToAllParentsStates = statesPerents.iterator();
-
-            while(iteratorToAllParentsStates.hasNext()){
-                AState curAdj = (AState) iteratorToAllParentsStates.next();
-                if( !ending.containsKey(curAdj.hashCode())){
-                    double newCost = curState.getCost() + curAdj.getCost();
-                    AState adjFromMap = (AState)newMap.get(curAdj.hashCode());
-                    if(adjFromMap.getCost() > newCost){
-                        adjFromMap.setParent(curState);
-                        adjFromMap.setCost(newCost);
-                    }
-                    else if(!newMap.containsKey(curAdj.hashCode())){
-                        curAdj.setParent((curState));
-                        curAdj.setCost(newCost);
-                        newMap.put(curAdj.hashCode(), curAdj);
+            ArrayList<AState> neighbors = maze.getAllStates(curr_state); //get states
+            nodesEvaluated += neighbors.size(); //add number of states evaluated
+            for(AState neighbor:neighbors){
+                if(!visited.contains(neighbor)){ //if not visited
+                    neighbor.setParent(curr_state);
+                    visited.add(neighbor);
+                    states.add(neighbor);
+                    if(neighbor.equals(maze.getGoalState())){ //if got to goal state
+                        return new Solution(neighbor);
                     }
                 }
             }
-
         }
-        return null;
+        return new Solution(maze.getGoalState());
     }
 }
