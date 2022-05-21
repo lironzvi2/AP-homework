@@ -1,29 +1,30 @@
 package algorithms.search;
 
-public abstract class AState {
+import java.util.Objects;
+
+public class AState {
     private AState parent;
     private  Object state;
-    int cost;
+    double cost;
 
-    public  AState(AState parent, int cost){
+    public  AState(AState parent, double cost){
         this.parent = parent;
         this.cost = cost;
     }
 
-    public  AState(Object s, int cost){
+    public  AState(Object s, double cost){
         this.state = s;
         this.cost = cost;
     }
-
     public AState getParent() {
         return parent;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
@@ -55,4 +56,8 @@ public abstract class AState {
         return equal;
     }
 
+    @Override
+    public int hashCode() {
+        return state.hashCode();
+    }
 }

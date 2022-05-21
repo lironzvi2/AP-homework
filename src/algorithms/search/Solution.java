@@ -20,6 +20,7 @@ public class Solution{
             end = end.getParent();
         }
         ArrayList<AState> endingSol = new ArrayList<>();
+
         while(!solList.isEmpty()){
             endingSol.add(solList.pop());
         }
