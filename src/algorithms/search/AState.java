@@ -60,4 +60,11 @@ public class AState {
     public int hashCode() {
         return state.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "AState{" +
+                "state=" + state +
+                '}';
+    }
 }
