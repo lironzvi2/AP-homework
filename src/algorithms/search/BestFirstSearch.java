@@ -1,13 +1,11 @@
 package algorithms.search;
-import algorithms.mazeGenerators.Position;
-import algorithms.mazeGenerators.Maze;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class BestFirstSearch extends  ASearchingAlgorithm {
     String name;
+    Solution mazeSolution;
+    ISearchable maze;
 
     public BestFirstSearch(){
         super();
@@ -18,20 +16,32 @@ public class BestFirstSearch extends  ASearchingAlgorithm {
         return this.name;
     }
 
-    public int priorityQueueCompare(AState s1, AState s2){
-        return s1.getCost() - s2.getCost();
-    }
     public Solution solve(ISearchable maze){
-        AState startPosition = maze.getStartState();
-        AState endPosition = maze.getGoalState();
-        PriorityQueue<AState> begins = new PriorityQueue<>();
-
-        Map<Integer, AState> ending = new HashMap<>();
-        Map<Integer, AState> newMap = new HashMap<>();
-        ending.put(maze.getStartState().hashCode(), maze.getStartState());
-
-
-
-
+        PriorityQueue<AState> states = new PriorityQueue(new AStatePriorityCompare());
+        HashSet<AState> visited = new HashSet<>();
+        states.add(maze.getStartState());
+        visited.add(maze.getStartState());
+        nodesEvaluated +=1;
+        while(states.size()!=0) {
+            AState curr_state = states.poll();
+            if(curr_state.equals(maze.getGoalState())){ //if found goal state
+                return new Solution(curr_state);
+            }
+            ArrayList<AState> neighbors = maze.getAllStates(curr_state); //get states
+            nodesEvaluated += neighbors.size(); //add number of states evaluated
+            for(AState neighbor:neighbors){
+                if(!visited.contains(neighbor)){ //if not visited
+                    neighbor.setParent(curr_state);
+                    neighbor.setCost(curr_state.getCost()+neighbor.getCost());//update cost to be neighbor + parent
+                    visited.add(neighbor);
+                    states.add(neighbor);
+                    if(neighbor.equals(maze.getGoalState())){ //if got to goal state
+                        return new Solution(neighbor);
+                    }
+                }
+            }
+        }
+        return new Solution(maze.getGoalState());
     }
 }
+
