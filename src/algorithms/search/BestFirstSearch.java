@@ -32,6 +32,7 @@ public class BestFirstSearch extends  ASearchingAlgorithm {
             for(AState neighbor:neighbors){
                 if(!visited.contains(neighbor)){ //if not visited
                     neighbor.setParent(curr_state);
+                    neighbor.setCost(curr_state.getCost()+neighbor.getCost());//update cost to be neighbor + parent
                     visited.add(neighbor);
                     states.add(neighbor);
                     if(neighbor.equals(maze.getGoalState())){ //if got to goal state
@@ -43,3 +44,4 @@ public class BestFirstSearch extends  ASearchingAlgorithm {
         return new Solution(maze.getGoalState());
     }
 }
+
