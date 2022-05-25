@@ -23,7 +23,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
                 return new Solution(curr_state);
             }
             ArrayList<AState> neighbors = maze.getAllStates(curr_state); //get states
-            nodesEvaluated += neighbors.size(); //add number of states evaluated
+            nodesEvaluated += 1; //add number of states evaluated
             for(AState neighbor:neighbors){
                 if(!visited.contains(neighbor)){ //if not visited
                     neighbor.setParent(curr_state);
