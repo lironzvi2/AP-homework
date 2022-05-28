@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-class MyMazeGeneratorTest {
+public class MyMazeGeneratorTest {
     @Test
     public void testGenerateInTime(){
         MyMazeGenerator myMazeGenerator = new MyMazeGenerator();
@@ -19,6 +19,7 @@ class MyMazeGeneratorTest {
         Position endP = maze.endP;
         assertTrue(maze.maze[startP.row][startP.column]==0&&maze.maze[endP.row][endP.column]==0);
     }
+
     @Test
     public void testBadArguments(){
         MyMazeGenerator myMazeGenerator = new MyMazeGenerator();
@@ -27,5 +28,4 @@ class MyMazeGeneratorTest {
         maze = myMazeGenerator.generate(1,0);
         assertTrue(maze.maze.length==2&&maze.maze[0].length==2);
     }
-
 }
