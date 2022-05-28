@@ -7,6 +7,10 @@ public class MyMazeGenerator extends AMazeGenerator {
 
     @Override
     public Maze generate(int rows, int columns) {
+        if(rows<2 || columns<2){//if parameters are wrong
+            rows=2;
+            columns=2;
+        }
         Random rand = new Random();
         Maze my_maze;
         ArrayList<Position> positions = new ArrayList<Position>();
