@@ -3,11 +3,11 @@ package algorithms.search;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
 import algorithms.mazeGenerators.Position;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertTrue;
 
 class DepthFirstSearchTest {
 
