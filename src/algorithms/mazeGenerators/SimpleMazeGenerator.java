@@ -5,6 +5,10 @@ import java.util.Random;
 
     @Override
     public Maze generate(int rows, int columns) {
+        if(rows<2 || columns<2){//if parameters are wrong
+            rows=2;
+            columns=2;
+        }
         int[][] mazeMatrix = new int[rows][columns];
         Random random = new Random();
         int i, j;
