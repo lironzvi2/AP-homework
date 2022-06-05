@@ -1,10 +1,11 @@
 package algorithms.search;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Solution{
+public class Solution implements Serializable {
     AState end;
     ArrayList<AState> solPath;
 

@@ -2,9 +2,10 @@ package algorithms.mazeGenerators;
 
 import algorithms.search.AState;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Position {
+public class Position implements Serializable {
     int column;
     int row;
 
