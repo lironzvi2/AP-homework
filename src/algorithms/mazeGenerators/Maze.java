@@ -1,9 +1,10 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Maze {
+public class Maze implements Serializable {
     int numRows;
     int numColumns;
     Position startP;
