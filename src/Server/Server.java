@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Server {
     private int port;
@@ -34,13 +36,12 @@ public class Server {
                         handleClient(clientSocket);
                     });
                 }
-                catch (Exception e){
-                    e.printStackTrace();
+                catch (SocketTimeoutException e){
+                    //do nothing
                 }
             }
             serverSocket.close();
-            threadPool.shutdownNow();
-
+            threadPool.shutdown();
         } catch (Exception e) {
             e.printStackTrace();
         }
