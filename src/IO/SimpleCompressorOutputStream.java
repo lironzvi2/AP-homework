@@ -38,7 +38,7 @@ public class SimpleCompressorOutputStream  extends OutputStream {
                     c++;
                 }
                 else{
-                    cur = true;
+                    cur = true; 
                     toByte(maze, c);
                     c++;
                 }
